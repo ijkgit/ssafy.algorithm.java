@@ -1,4 +1,4 @@
-package edu.ssafy.im;
+package edu.ssafy.im.SWEA;
 
 import java.io.*;
 import java.util.StringTokenizer;
