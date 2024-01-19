@@ -1,9 +1,9 @@
-package edu.ssafy.im.BOJ;
+package edu.ssafy.im.BOJ.No16918;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class Solution16918 {
+public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
