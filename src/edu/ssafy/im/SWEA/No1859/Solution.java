@@ -1,9 +1,9 @@
-package edu.ssafy.im.SWEA;
+package edu.ssafy.im.SWEA.No1859;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class Solution1859 {
+public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
