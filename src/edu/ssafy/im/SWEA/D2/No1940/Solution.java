@@ -1,4 +1,4 @@
-package edu.ssafy.im.SWEA.No1940;
+package edu.ssafy.im.SWEA.D2.No1940;
 
 import java.io.BufferedReader;
 import java.io.IOException;
