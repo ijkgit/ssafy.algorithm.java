@@ -13,7 +13,7 @@ public class Main {
 		int l = Integer.parseInt(br.readLine());
 		int n = Integer.parseInt(br.readLine());
 
-		boolean[] visited = new boolean[l];
+		boolean[] visited = new boolean[l+1];
 		int[] arr = new int[n];
 		int[] count = new int[n];
 		for (int i = 0; i < n; i++) {
@@ -32,25 +32,27 @@ public class Main {
 				}
 			}
 		}
-		
+
 		int max = 0;
 		int ans = 0;
 		for (int i = 0; i < n; i++) {
 			if (arr[i] > max) {
-				ans = i+1;
-			} 
+				ans = i + 1;
+				max = arr[i];
+			}
 		}
 		sb.append(ans + "\n");
-		
+
 		max = 0;
 		ans = 0;
 		for (int i = 0; i < n; i++) {
 			if (count[i] > max) {
-				ans = i+1;
+				ans = i + 1;
+				max = count[i];
 			}
 		}
 		sb.append(ans);
-		
+
 		System.out.print(sb);
 	}
 }
