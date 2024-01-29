@@ -10,9 +10,7 @@ public class Solution {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 
-		int testCase = 10;
-
-		for (int t = 1; t <= testCase; t++) {
+		for (int t = 1; t <= 10; t++) {
 			br.readLine();
 			int[][] graph = new int[100][100];
 			for (int r = 0; r < graph.length; r++) {
@@ -23,22 +21,34 @@ public class Solution {
 				}
 			}
 
-			int[] direction = {-1, 1};
 			for (int c = 0; c < graph.length; c++) {
-				int r = 0;
-				int nowY = c;
-				if (graph[r][c] == 1) {
-					while(r < 100) {
-						r++;
-						if(0 <= c - 1 && graph[r][c-1] == 1)
-							nowY = c-1;
-						if(c+1 < 100 && graph[r][c+1] == 1)
-							nowY = c+1;
+				int y = 0;
+				if (graph[0][c] == 1) {
+					y = c;
+					for (int r = 0; r < graph.length; r++) {
+						boolean status = false;
+						for (int i = y - 1; i >= 0; i--) {
+							if (graph[r][i] == 1) {
+								y = i;
+								status = true;
+							} else {
+								break;
+							}
+						}
+						if (status) continue;
+						for (int i = y + 1; i < graph.length; i++) {
+							if (graph[r][i] == 1) {
+								y = i;
+							} else {
+								break;
+							}
+						}
 					}
+					if (graph[99][y] == 2)
+						sb.append("#" + t + " " + c + "\n");
 				}
 			}
-
 		}
-
+		System.out.print(sb);
 	}
 }
