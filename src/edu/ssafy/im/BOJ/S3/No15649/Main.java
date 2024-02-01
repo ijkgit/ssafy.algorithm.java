@@ -1,4 +1,4 @@
-package edu.ssafy.im.BOJ.No15649;
+package edu.ssafy.im.BOJ.S3.No15649;
 
 import java.io.BufferedReader;
 import java.io.IOException;
