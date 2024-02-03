@@ -3,7 +3,6 @@ package edu.ssafy.im.SWEA.D3.No1225;
 import java.io.*;
 import java.util.ArrayDeque;
 import java.util.Queue;
-import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Solution {
