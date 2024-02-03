@@ -6,7 +6,6 @@ import java.util.StringTokenizer;
 
 public class Solution {
     int n;
-    char[] chars;
 
     public static void main(String[] args) throws IOException {
         new Solution().io();
@@ -19,7 +18,6 @@ public class Solution {
 
         for (int t = 1; t <= 10; t++) {
             n = Integer.parseInt(br.readLine());
-            chars = new char[n];
 
             String string = br.readLine();
             int ans = sol(string);
