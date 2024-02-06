@@ -1,11 +1,9 @@
 package edu.ssafy.im.BOJ.Silver.S1.No2178;
 
 import java.io.*;
-import java.util.ArrayDeque;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main_DFS {
     int n, m;
     int[][] graph;
     int[][] visited;
@@ -13,7 +11,7 @@ public class Main {
     int ans = Integer.MAX_VALUE;
 
     public static void main(String[] args) throws IOException {
-        new Main().io();
+        new Main_DFS().io();
     }
 
     private void io() throws IOException {
