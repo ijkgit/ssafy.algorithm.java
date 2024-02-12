@@ -2,16 +2,15 @@ package edu.ssafy.im.BOJ.Gold.G4.No17406;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main_FaileCase02 {
     private int[][] graph, copy, original;
     private int ans = Integer.MAX_VALUE;
     private ArrayList<Operation> operationList;
     private int[] sel;
     public static void main(String[] args) throws IOException {
-        new Main().io();
+        new Main_FaileCase02().io();
     }
 
     private void io() throws IOException {
@@ -113,10 +112,10 @@ public class Main {
 
         copy();
 
-        System.out.println("------graph------");
-        for (int[] a : graph) {
-            System.out.println(Arrays.toString(a));
-        }
+//        System.out.println("------graph------");
+//        for (int[] a : graph) {
+//            System.out.println(Arrays.toString(a));
+//        }
     }
 
     private void copy() {
@@ -130,10 +129,10 @@ public class Main {
             graph[i] = original[i].clone();
             copy[i] = original[i].clone();
         }
-        System.out.println("------original------");
-        for (int[] a : graph) {
-            System.out.println(Arrays.toString(a));
-        }
+//        System.out.println("------original------");
+//        for (int[] a : graph) {
+//            System.out.println(Arrays.toString(a));
+//        }
     }
 
     private int getMin() {
