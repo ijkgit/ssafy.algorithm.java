@@ -37,6 +37,7 @@ public class Main {
             }
 
             int ans = 0;
+            // 값이 1이면서 방문하지 않은 경우에만 방문 탐색
             for (int i = 0; i < h; i++) {
                 for (int j = 0; j < w; j++) {
                     if (!visited[i][j] && graph[i][j] == 1)
@@ -51,6 +52,7 @@ public class Main {
         bw.close();
     }
 
+    // BFS
     private int sol(int x, int y) {
         Queue<Point> queue = new ArrayDeque<>();
         queue.offer(new Point(x, y));
@@ -69,7 +71,7 @@ public class Main {
             }
         }
 
-        return 1;
+        return 1; // 섬 개수 추가
     }
 
     private boolean checkStatus(int x, int y) {
