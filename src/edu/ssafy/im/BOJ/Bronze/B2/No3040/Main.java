@@ -1,40 +1,54 @@
 package edu.ssafy.im.BOJ.Bronze.B2.No3040;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class Main {
+	private static final int SIZE = 9;
+	int[] arr = new int[SIZE];
+	int[] sel = new int[7];
+	StringBuilder sb = new StringBuilder();
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int arr[] = new int[9];
-		for (int i = 0; i < 9; i++) {
-			arr[i] = Integer.parseInt(br.readLine());
-		}
-		int sum = 0;
-		for (int i = 0; i < 9; i++) {
-			sum += arr[i];
-		}
-
-		int goal = sum - 100;
-		int index1 = 0;
-		int index2 = 0;
-
-		for (int i = 0; i < 8; i++) {
-			for (int j = i + 1; j < 9; j++) {
-				if (arr[i] + arr[j] == goal) {
-					index1 = i;
-					index2 = j;
-					break;
-				}
-			}
-		}
-		for (int i = 0; i < 9; i++) {
-			if (i == index1 || i == index2)
-				continue;
-			System.out.println(arr[i]);
-		}
+		new Main().io();
 	}
 
+	private void io() throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		for (int i = 0; i < SIZE; i++) {
+			arr[i] = Integer.parseInt(br.readLine());
+		}
+		sol(0, 0);
+		bw.write(sb.toString());
+		bw.flush();
+		bw.close();
+	}
+
+	private void sol(int i, int k) {
+		if (sb.length() != 0) {
+			return;
+		}
+
+		if (k == sel.length) {
+			int sum = 0;
+			for (int j = 0; j < sel.length; j++) {
+				sum += sel[j];
+			}
+			if (sum == 100) {
+				for (int j = 0; j < sel.length; j++) {
+					sb.append(sel[j]).append("\n");
+				}
+			}
+			return;
+		}
+		
+		for (int j = i; j < SIZE; j++) {
+			sel[k] = arr[j];
+			sol(j+1, k+1);
+		}
+	}
 }
