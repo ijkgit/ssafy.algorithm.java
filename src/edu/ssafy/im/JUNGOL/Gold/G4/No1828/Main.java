@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -45,11 +44,6 @@ public class Main {
 			chemicalList.add(new Chemical(low, high));
 		}
 		Collections.sort(chemicalList);
-		
-		for(Chemical c: chemicalList) {
-			System.out.println(c.high + " " + c.low);
-		}
-		
 		
 		int ans = 0;
 		for (int j = 0; j < chemicalList.size(); j++) {
