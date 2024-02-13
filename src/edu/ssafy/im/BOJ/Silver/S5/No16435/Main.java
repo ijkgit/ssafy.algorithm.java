@@ -12,6 +12,7 @@ import java.util.StringTokenizer;
 public class Main {
 	private Queue<Integer> pq;
 	int l;
+
 	public static void main(String[] args) throws IOException {
 		new Main().io();
 	}
@@ -25,21 +26,23 @@ public class Main {
 		l = Integer.parseInt(st.nextToken());
 		pq = new PriorityQueue<Integer>();
 		st = new StringTokenizer(br.readLine());
- 		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			pq.offer(Integer.parseInt(st.nextToken()));
 		}
- 		sb.append(sol());
- 		bw.write(sb.toString());
- 		bw.flush();
- 		bw.close();
+		sb.append(sol());
+		bw.write(sb.toString());
+		bw.flush();
+		bw.close();
 	}
 
 	private int sol() {
-		while(!pq.isEmpty()) {
-			if(l >= pq.poll()) l++;
-			else break;
+		while (!pq.isEmpty()) {
+			if (l >= pq.poll())
+				l++;
+			else
+				break;
 		}
-		
+
 		return l;
 	}
 }
