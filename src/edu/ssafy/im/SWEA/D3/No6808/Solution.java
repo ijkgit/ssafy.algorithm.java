@@ -1,74 +1,89 @@
 package edu.ssafy.im.SWEA.D3.No6808;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.io.OutputStreamWriter;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Solution {
-
-	static int[] selected;
-	static boolean visited[];
-	static int GYU[];
-	static boolean[] cards;
-	static long ans;
-	static long lose;
+	private final static int SIZE = 9;
+	private int[] arr;
+	private int[] card;
+	private int[] sel;
+	private int sw;
+	private int aw;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		int T = Integer.parseInt(br.readLine());
-		for (int test_case = 1; test_case <= T; test_case++) {
-			ans = 0;
-			lose = 0;
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			cards = new boolean[19];
-			visited = new boolean[19];
-			GYU = new int[9];
-			selected = new int[9];
-			for (int i = 0; i < 9; i++) {
-				int in = Integer.parseInt(st.nextToken());
-				cards[in] = true;
-				GYU[i] = in;
-				// 규영 true
-			}
-			recursive(0, 0);
-			sb.append("#").append(test_case).append(" ").append(ans).append(" ").append((lose)).append('\n');
-		}
-		System.out.println(sb);
-
+		new Solution().io();
 	}
 
-	private static void recursive(int idx, int k) {
-		if (idx == selected.length) {
-			int PointGYU = 0;
-			int PointINY = 0;
-			for (int i = 0; i < 9; i++) {
-				if (selected[i] > GYU[i]) {
-					PointINY += (selected[i] + GYU[i]);
-				} else if (selected[i] < GYU[i]) {
-					PointGYU += (selected[i] + GYU[i]);
+	private void io() throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringBuilder sb = new StringBuilder();
+		int testCase = Integer.parseInt(br.readLine());
+
+		for (int t = 1; t <= testCase; t++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			arr = new int[SIZE];
+			for (int i = 0; i < SIZE; i++) {
+				arr[i] = Integer.parseInt(st.nextToken());
+			}
+			card = new int[SIZE];
+			int idx = 0;
+			for (int i = 1; i <= SIZE * 2; i++) {
+				boolean flag = true;
+				for (int j = 0; j < SIZE; j++) {
+					if (arr[j] == i) {
+						flag = false;
+						break;
+					}
+				}
+				if(flag) {
+					card[idx] = i;
+					idx++;
 				}
 			}
-			if (PointINY < PointGYU)
-				ans++;
-			else if (PointINY > PointGYU)
-				lose++;
-			return;
-
+			sw = 0; aw = 0;
+			sol();
+			sb.append("#").append(t).append(" ").append(aw).append(" ").append(sw).append("\n");
 		}
-		for (int i = 1; i <= 18; i++) {
-			if (cards[i])
-				continue;
-			if (!visited[i]) { // 인영
-				visited[i] = true;
-				selected[idx] = i;
-				recursive(idx + 1, k + 1);
-				visited[i] = false;
-			}
-
-		}
-
+		bw.write(sb.toString());
+		bw.flush();
+		bw.close();
 	}
 
+	private void sol() {
+		sel = new int[SIZE];
+		permutation(0, 0);
+	}
+
+	private void permutation(int k, int v) {
+		if (k == SIZE) {
+			int ss = 0, as = 0;
+			for (int i = 0; i < SIZE; i++) {
+				if(sel[i] > arr[i]) {
+					ss += sel[i] + arr[i];
+				} else {
+					as += sel[i] + arr[i];
+				}
+			}
+			if (ss > as) {
+				sw += 1;
+			} else if (as > ss) {
+				aw += 1;
+			}
+			return;
+		}
+
+		for (int i = 0; i < SIZE; i++) {
+			if ((v & (1 << i)) == 0) {
+				sel[k] = card[i];
+				permutation(k + 1, v | 1 << i);
+			}
+		}
+	}
 }
