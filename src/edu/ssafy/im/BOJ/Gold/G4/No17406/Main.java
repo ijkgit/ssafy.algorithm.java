@@ -47,7 +47,7 @@ public class Main {
 		}
 		
 		ans = Integer.MAX_VALUE;
-		getResult(graph);
+//		getResult(graph);
 		sol();
 		
 		sb.append(ans);
