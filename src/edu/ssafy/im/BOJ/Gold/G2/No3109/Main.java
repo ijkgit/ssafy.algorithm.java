@@ -5,12 +5,14 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
 	private int r, c, ans = 0;
 	private boolean[][] graph;
 	private int[] direction = { -1, 0, 1 };
+	boolean flag;
 	
 	public static void main(String[] args) throws IOException {
 		new Main().sol();
@@ -37,13 +39,34 @@ public class Main {
 		}
 
 		for (int i = 0; i < r; i++) {
-			dfs(i, 0);
+//			dfs(i, 0);
+			flag = false;
+			dfs_void(i, 0);
 		}
 
 		sb.append(ans);
 		bw.write(sb.toString());
 		bw.flush();
 		bw.close();
+	}
+	
+	private void dfs_void(int x, int y) {
+		if (y == c - 1) {
+			ans++;
+			flag = true;
+			return;
+		}
+		
+		graph[x][y] = false;
+
+		for (int d = 0; d < direction.length; d++) {
+			int nx = x + direction[d];
+			int ny = y + 1;
+			if (0 <= nx && nx < r && 0 <= ny && ny < c && graph[nx][ny]) {
+				dfs_void(nx, ny);
+				if(flag) return;
+			}
+		}
 	}
 
 	private boolean dfs(int x, int y) {
