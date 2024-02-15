@@ -52,7 +52,7 @@ public class Main {
 	
 	private void dfs_void(int x, int y) {
 		if (y == c - 1) {
-			ans++;
+			ans++; 
 			flag = true;
 			return;
 		}
