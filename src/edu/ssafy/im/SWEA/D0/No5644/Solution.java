@@ -1,10 +1,7 @@
 package edu.ssafy.im.SWEA.D0.No5644;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.StringTokenizer;
 
 public class Solution {
