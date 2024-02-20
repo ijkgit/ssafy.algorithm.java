@@ -8,6 +8,7 @@ public class Solution {
     private static final int[][] direction = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
     private boolean[][] visited;
     private ArrayList<Point> cellList;
+	private int SIZE;
     private static final int MINVALUE = -99999;
 
     class Point implements Comparable<Point> {
@@ -27,14 +28,6 @@ public class Solution {
             }
             return o.t - this.t;
         }
-
-        @Override
-        public String toString() {
-            return "{" +
-                    t +
-                    " " + v +
-                    '}';
-        }
     }
 
     public static void main(String[] args) throws IOException {
@@ -52,15 +45,15 @@ public class Solution {
             m = Integer.parseInt(st.nextToken());
             k = Integer.parseInt(st.nextToken());
 
-            int SIZE = Math.max(n, m) + 2 * k;
+            SIZE = Math.max(n, m) + 2 * k;
             cellList = new ArrayList<>();
             visited = new boolean[SIZE][SIZE];
             for (int i = (SIZE - n) / 2; i < (SIZE + n) /2; i++) {
                 st = new StringTokenizer(br.readLine());
                 for (int j = (SIZE - m) / 2; j < (SIZE+m) / 2; j++) {
                     int v = Integer.parseInt(st.nextToken());
-//                    visited[i][j] = true;
                     if(v != 0) {
+                    	visited[i][j] = true;
                         cellList.add(new Point(i, j, v));
                     }
                 }
@@ -74,14 +67,13 @@ public class Solution {
     }
 
     private int sol() {
-        for (int now = 0; now <= k; now++) {
+        for (int now = 1; now <= k; now++) {
             Collections.sort(cellList);
             ArrayList<Point> delList = new ArrayList<>();
-            System.out.println(cellList);
             for (int i = 0; i < cellList.size(); i++) {
             	if (cellList.get(i).t == MINVALUE) break;
             	cellList.get(i).t--;
-                if (cellList.get(i).t == -1 && !visited[cellList.get(i).x][cellList.get(i).y]) {
+            	if(cellList.get(i).t == -1) {
                     visited[cellList.get(i).x][cellList.get(i).y] = true;
                     delList.add(new Point(cellList.get(i).x, cellList.get(i).y, cellList.get(i).v));
                 }
@@ -95,7 +87,8 @@ public class Solution {
                     int ny = p.y + direction[d][1];
 
                     if(visited[nx][ny]) continue;
-
+                    
+                    visited[nx][ny] = true;
                     cellList.add(new Point(nx, ny, p.v));
                 }
             }
