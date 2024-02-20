@@ -8,6 +8,7 @@ public class Solution {
     private static final int[][] direction = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
     private boolean[][] visited;
     private ArrayList<Point> cellList;
+    private static final int MINVALUE = -99999;
 
     class Point implements Comparable<Point> {
         int x, y, t, v;
@@ -78,17 +79,14 @@ public class Solution {
             ArrayList<Point> delList = new ArrayList<>();
             System.out.println(cellList);
             for (int i = 0; i < cellList.size(); i++) {
-                if (cellList.get(i).t == -2) break;
-                if (visited[cellList.get(i).x][cellList.get(i).y]) {
-                    cellList.get(i).t = -2;
-                    continue;
-                }
-                cellList.get(i).t--;
-                if (cellList.get(i).t == -1) {
-                    cellList.get(i).t = -2;
+            	if (cellList.get(i).t == MINVALUE) break;
+            	cellList.get(i).t--;
+                if (cellList.get(i).t == -1 && !visited[cellList.get(i).x][cellList.get(i).y]) {
                     visited[cellList.get(i).x][cellList.get(i).y] = true;
                     delList.add(new Point(cellList.get(i).x, cellList.get(i).y, cellList.get(i).v));
-//                    ans++;
+                }
+            	if (cellList.get(i).t == -cellList.get(i).v) {
+                	cellList.get(i).t = MINVALUE;
                 }
             }
             for (Point p : delList) {
@@ -106,7 +104,7 @@ public class Solution {
         int ans = 0;
         Collections.sort(cellList);
         for (Point p: cellList) {
-            if(p.t < 0) break;
+            if(p.t == MINVALUE) break;
             ans++;
         }
         return ans;
