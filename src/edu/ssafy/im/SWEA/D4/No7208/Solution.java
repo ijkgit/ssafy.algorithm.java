@@ -17,7 +17,7 @@ public class Solution {
 	private int n;
 	private int[] arr;
 	private List<ArrayList<Integer>> graph;
-	private int ans = 0;
+	private int[] sel;
 
 	private void io() throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -44,23 +44,70 @@ public class Solution {
 						graph.get(i).add(j);
 				}
 			}
-			dfs(0);
-			sb.append("#").append(t).append(" ").append(ans).append("\n");
+			sb.append("#").append(t).append(" ").append(sol()).append("\n");
 		}
 		bw.write(sb.toString());
 		bw.flush();
 		bw.close();
 	}
 
-	private void dfs(int idx) {
-		for (int j = 0; j < graph.get(idx).size(); j++) {
-			if (arr[idx] == arr[graph.get(idx).get(j)]) {
-				for (int i = 0; i < arr.length; i++) {
-					arr[graph.get(idx).get(j)] = (arr[graph.get(idx).get(j)]+1)%4;
-				}
-				ans ++;
-				dfs(j+1);
+	private int sol() {
+		int ans = 0;
+		for (int i = 0; i < n; i++) {
+			sel = new int[i];
+			if (permutation(0, 0)) {
+				ans = i;
+				break;
 			}
 		}
+		return ans;
+	}
+	
+	private boolean check(int k, int v, int[] tmp) {
+		if (k == sel.length) {
+			int[] tmp2 = arr.clone();
+			
+			for(int i=0; i<sel.length; i++) {
+				tmp2[sel[i]] = tmp[i];
+			}
+			
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < graph.get(i).size(); j++) {
+					if (tmp2[graph.get(i).get(j)] == tmp2[i]) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+
+		for (int i = 1; i <= 4; i++) {
+			if ((v & (1 << i)) == 0) {
+				tmp[k] = i;
+				if(check(k + 1, v | 1 << i, tmp))
+					return true;
+			}
+		}
+		
+		return false;
+	}
+
+	private boolean permutation(int k, int v) {
+		if (k == sel.length) {
+			if (check(0, 0, new int[sel.length])) {
+				return true;	
+			}
+			return false;
+		}
+
+		for (int i = 0; i < n; i++) {
+			if ((v & (1 << i)) == 0) {
+				sel[k] = i;
+				if(permutation(k + 1, v | 1 << i))
+					return true;
+			}
+		}
+
+		return false;
 	}
 }
