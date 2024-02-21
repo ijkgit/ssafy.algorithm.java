@@ -20,7 +20,6 @@ public class Main {
 	private List<Point> cctvList;
 	private int ans = Integer.MAX_VALUE;
 	private static final int[][] direction = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
-
 	class Point {
 		int x, y, type;
 
