@@ -29,7 +29,7 @@ public class Main {
 
 		graph = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
-			graph.add(new ArrayList<Integer>());
+			graph.add(new ArrayList<>());
 		}
 
 		for (int i = 0; i < m; i++) {
@@ -42,8 +42,9 @@ public class Main {
 
 		
 		for (int i = 0; i < graph.size(); i++) {
-//			dfs(i, 1 << i, 0);
-			dfs(i, new boolean[n], 0);
+			boolean[] v = new boolean[n];
+			v[i] = true;
+			dfs(i, v, 0);
 			if (sb.length() != 0) break;
 		}
 		if (sb.length() == 0) sb.append(0);
@@ -62,11 +63,8 @@ public class Main {
 			sb.append(1);
 			return;
 		}
-		
+
 		for (int j = 0; j < graph.get(k).size(); j++) {
-//			if ((v & (1 << graph.get(k).get(j))) == 0) {
-//				dfs(graph.get(k).get(j), v | 1 << graph.get(k).get(j), cnt+1);
-//			}
 			int cur = graph.get(k).get(j);
 			if(!v[cur]) {
 				v[cur] = true;
