@@ -76,7 +76,6 @@ public class Main {
     private void permutation(int k, int v) {
         if (k == sel.length) {
 //			System.out.println(Arrays.toString(sel));
-            setTOTAL();
             dfs(sel[0], 1 << sel[0], 1);
             return;
         }
@@ -103,14 +102,16 @@ public class Main {
         int[] rev = new int[n-sel.length];
         int idx = 0;
         for (int i = 0; i < n; i++) {
+            boolean flag = true;
             for (int s : sel) {
-                if (i == s) continue;
+                if (i == s) flag = false;
             }
-            rev[idx] = i;
-            i++;
+            if(flag) {
+                rev[idx] = i;
+                i++;
+            }
         }
-
-
+        return tmp(rev[0], 1 << rev[0], 1);
     }
 
     private boolean tmp(int i, int v, int depth) {
@@ -120,7 +121,7 @@ public class Main {
         for (int j = 0; j < sel.length; j++) {
             if (graph[i][sel[j]] != 0) {
                 if ((v & (1 << sel[j])) == 0) {
-                    dfs(sel[j], v |= 1 << sel[j], depth + 1);
+                    tmp(sel[j], v |= 1 << sel[j], depth + 1);
                 }
             }
         }
@@ -130,6 +131,7 @@ public class Main {
     private void dfs(int i, int v, int depth) {
         if (depth == sel.length) {
             if (!check()) return;
+            setTOTAL();
             int sum = 0;
             for (int j = 0; j < sel.length; j++) {
                 sum += arr[sel[j]];
