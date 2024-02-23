@@ -50,7 +50,7 @@ public class Main {
 		int cnt = 1;
 		for (int i = 1; i < SIZE; i++) {
 			if(cnt == 4) {
-				queue.add(PLAYER[NOW][0]);
+				queue.addFirst(PLAYER[NOW][0]);
 				i--;
 				cnt++;
 			}
