@@ -6,126 +6,84 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
-	ArrayList<ArrayList<Integer>> graph;
+	private static int N;
+	private static int[] num;
+	private static ArrayList<ArrayList<Integer>> graph;
+	private static int[] s;
+	private static int[] r;
 
-	public static void main(String[] args) throws IOException {
-		new Main().io();
-	}
-
-	private int n;
-	private int[] arr;
-	private int ans = Integer.MAX_VALUE;
-
-	private void io() throws IOException {
+	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringBuilder sb = new StringBuilder();
-		n = Integer.parseInt(br.readLine());
-
-		arr = new int[n];
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		for (int i = 0; i < n; i++) {
-			arr[i] = Integer.parseInt(st.nextToken());
-		}
-
+		StringTokenizer st;
+		
+		N = Integer.parseInt(br.readLine());
+		num = new int[N];
+		
 		graph = new ArrayList<>();
-		for (int i = 0; i < n; i++) {
-			graph.add(new ArrayList<>());
-		}
-
-		for (int from = 0; from < n; from++) {
+		for (int i = 0; i < N; i++) graph.add(new ArrayList<>());
+			
+		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
-			int e = Integer.parseInt(st.nextToken());
-			for (int j = 0; j < e; j++) {
-				int to = Integer.parseInt(st.nextToken()) - 1; // zero base
-				graph.get(from).add(to);
-				graph.get(to).add(from);
+			int E = Integer.parseInt(st.nextToken());
+			for (int j = 0; j < E; j++) {
+				int V = Integer.parseInt(st.nextToken()) - 1;
+				graph.get(j).add(V);
+				graph.get(V).add(j);
 			}
 		}
-
+		
 		sol();
-		sb.append(ans);
-		bw.write(sb.toString());
-		bw.flush();
-		bw.close();
 	}
 
-	private void sol() {
-		for (int i = 1; i < n; i++) {
-			permutation(0, 0, new int[i]);
+	private static void sol() {
+		for (int i = 1; i < 2 / N; i++) {
+			s = new int[i];
+			r = new int[N-i];
+			permutation(0, 0);
 		}
 	}
-
-	private void permutation(int k, int v, int[] sel) {
-		if (k == sel.length) {
-			System.out.println("sel : " + Arrays.toString(sel));
-			int[] rev = rev(sel);
-			if (cal(sel, rev) > ans)
-				return;
-			if (dfs(0, 1 << sel[0], sel) && dfs(0, 1 << rev[0], rev)) {
-				ans = Math.min(ans, cal(sel, rev));
-
-				System.out.println("ans : " + ans);
-			}
-			return;
-		}
-
-		for (int i = 0; i < n; i++) {
-			if ((v & (1 << i)) == 0) {
-				sel[k] = i;
-				permutation(k + 1, v |= 1 << i, sel);
-			}
-		}
-	}
-
-	private int[] rev(int[] sel) {
-		int rev[] = new int[n - sel.length];
-		int idx = 0;
-		for (int i = 0; i < n; i++) {
-			boolean flag = false;
-			for (int j = 0; j < sel.length; j++) {
-				if (i == sel[j])
-					flag = true;
-			}
-			if (!flag) {
-				rev[idx] = i;
-				idx++;
-			}
-		}
-
-		return rev;
-	}
-
-	private boolean dfs(int k, int v, int[] sel) {
-		if (k == sel.length - 1) {
-			System.out.println("dfs : " + Arrays.toString(sel));
+	
+	private static boolean check(int k, int v, int[] a) {
+		if (k == a.length) {
 			return true;
 		}
-
-		for (int s = 0; s < sel.length; s++) {
-		for (int j = 0; j < graph.get(sel[k]).size(); j++) {
-			
-				if (sel[s] == graph.get(sel[k]).get(j) && (v & (1 << graph.get(sel[k]).get(j))) == 0) {
-					return dfs(k + 1, v | 1 << graph.get(sel[k]).get(j), sel);
-				}
+		
+		for (int i = 0; i < a.length; i++) {
+			int cur = graph.get(a[i]);
 			
 		}
-		}
-
-		return false;
 	}
 
-	private int cal(int sel[], int rev[]) {
-		int s1 = 0, s2 = 0;
-		for (int s : sel)
-			s1 += arr[s];
-		for (int r : rev)
-			s2 += arr[r];
+	private static void permutation(int k, int v) {
+		if (k == s.length) {
+			makeR();
+			return;
+		}
+		
+		for (int i = 0; i < N; i++) {
+			if ((v & (1 << i)) == 0) {
+				s[k] = i;
+				permutation(k+1, v |= 1 << i);
+			}
+		}
+	}
 
-		return Math.abs(s1 - s2);
+	private static void makeR() {
+		int idx = 0;
+		for (int i = 0; i < N; i++) {
+			boolean f = false;
+			for(int j : s) {
+				if (i == j) {
+					f = true;
+					break;
+				}
+			}
+			if (!f) r[idx++] = i;
+		}
 	}
 }
