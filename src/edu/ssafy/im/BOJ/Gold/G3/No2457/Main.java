@@ -47,23 +47,25 @@ public class Main {
 
 		int start = 301;
 		int end = 1201;
-		int now = 0;
+		int now = 301;
 		int idx = 0;
 
-		while(start < end) {
+		L:while(now < end) {
 			boolean flag = false;
 
 			for (int i = idx; i < N; i++) {
-				if (flowerList.get(i).s > start) break;
+				if (flowerList.get(i).s > now) break L;
 				if (flowerList.get(i).e > now) {
 					flag = true;
 					now = flowerList.get(i).e;
 					idx = i + 1;
+					
+					System.out.println(now);
 				}
 			}
 
 			if(flag) {
-				start = now;
+//				start = now;
 				ans++;
 			} else {
 				break;
