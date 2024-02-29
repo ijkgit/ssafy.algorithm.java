@@ -64,38 +64,43 @@ public class Main {
 		ans = ans == Integer.MAX_VALUE ? -1 : ans;
 	}
 	
-	// 0 3 , 1 2 4 5
-	private static boolean check(int[] a) {
-		int v = 0, cnt = 0;
-		for (int i : a) {
-			for (int j = 0; j < graph.get(i).size(); j++) {
+	// 0 1, 2
+	private static boolean check(int s, int v, int cnt, int[] a) {
+		if (a.length == 1) return true;
+		if (cnt == a.length) return true;
+		if (s == a.length) return false;
+		System.out.println(Arrays.toString(a));
+		System.out.println(s);
+//		if (a.length == 5 && a[0] == 0 && a[1] == 1 && a[2] == 5 && a[3] == 7 && a[4] == 8) {
+			for (int j = 0; j < graph.get(a[s]).size(); j++) {
 				for (int k : a) {
-					if (k == graph.get(i).get(j) && (v & (1 << k)) == 0) {
+					if (k == graph.get(a[s]).get(j) && (v & (1 << k)) == 0) {
 						v |= 1 << k;
 						cnt++;
+						System.out.println(a[s] + " " + k + " " + cnt);
 					}
 				}
 			}
-		}	
+//		}
 		
-		if (cnt == a.length) return true;
-		
-		return false;
+		return check(s+1, v, cnt, a); 
 	}
-
+	
+//	private makeSet
+	
 // https://www.acmicpc.net/board/view/54133
 	private static void permutation(int k, int v) {
 		if (k == s.length) {
 			makeR();
 //			System.out.println(Arrays.toString(s));
-//			System.out.println(Arrays.toString(r));
-			if (check(s) && check(r)) {
+//			System.out.println(Arrays.toString(r));.
+			if (check(0, 0, 0, s) && check(0, 0, 0, r)) {
 				System.out.println(Arrays.toString(s));
 				System.out.println(Arrays.toString(r));
 				int s1 = 0, s2 = 0;
 				for (int val : s) s1 += num[val];
 				for (int val : r) s2 += num[val];
-				System.out.println(Math.abs(s1 - s2));
+				System.out.println("ans : " + Math.abs(s1 - s2) + " ");
 				ans = Math.min(ans, Math.abs(s1 - s2));
 			}
 			return;
