@@ -5,9 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
 	private static int N;
@@ -44,10 +42,6 @@ public class Main {
 			}
 		}
 
-		for (int i = 0; i < graph.size(); i++) {
-			System.out.println(i + " : " + graph.get(i));
-		}
-
 		sol();
 		sb.append(ans);
 		bw.write(sb.toString());
@@ -59,59 +53,59 @@ public class Main {
 		for (int i = 1; i <= N / 2; i++) {
 			s = new int[i];
 			r = new int[N - i];
-			permutation(0, 0);
+			combination(0, 0);
 		}
 		ans = ans == Integer.MAX_VALUE ? -1 : ans;
 	}
 	
 	// 0 1, 2
-	private static boolean check(int s, int v, int cnt, int[] a) {
-		if (a.length == 1) return true;
-		if (cnt == a.length) return true;
-		if (s == a.length) return false;
-		System.out.println(Arrays.toString(a));
-		System.out.println(s);
-//		if (a.length == 5 && a[0] == 0 && a[1] == 1 && a[2] == 5 && a[3] == 7 && a[4] == 8) {
-			for (int j = 0; j < graph.get(a[s]).size(); j++) {
-				for (int k : a) {
-					if (k == graph.get(a[s]).get(j) && (v & (1 << k)) == 0) {
-						v |= 1 << k;
-						cnt++;
-						System.out.println(a[s] + " " + k + " " + cnt);
-					}
+	private static boolean check(int[] a) {
+		Queue<Integer> q = new ArrayDeque<>();
+		int v = 1 << a[0];
+		q.offer(a[0]);
+		int cnt = 1;
+
+		while (!q.isEmpty()) {
+			int cur = q.poll();
+			for (int i = 0; i < graph.get(cur).size(); i++) {
+				int next = graph.get(cur).get(i);
+				if(contains(a, next) && (v & (1 << next)) == 0) {
+					q.offer(next);
+					v |= 1 << next;
+					cnt++;
 				}
 			}
-//		}
-		
-		return check(s+1, v, cnt, a); 
+		}
+
+		if (cnt == a.length) return true;
+		else return false;
+	}
+
+	private static boolean contains(int[] a, int next) {
+		for (int v : a) if (v == next) return true;
+		return false;
 	}
 	
-//	private makeSet
-	
-// https://www.acmicpc.net/board/view/54133
-	private static void permutation(int k, int v) {
+	private static void combination(int k, int v) {
 		if (k == s.length) {
 			makeR();
-//			System.out.println(Arrays.toString(s));
-//			System.out.println(Arrays.toString(r));.
-			if (check(0, 0, 0, s) && check(0, 0, 0, r)) {
-				System.out.println(Arrays.toString(s));
-				System.out.println(Arrays.toString(r));
-				int s1 = 0, s2 = 0;
-				for (int val : s) s1 += num[val];
-				for (int val : r) s2 += num[val];
-				System.out.println("ans : " + Math.abs(s1 - s2) + " ");
-				ans = Math.min(ans, Math.abs(s1 - s2));
-			}
+			if (check(s) && check(r)) ans = Math.min(ans, getDiff());
 			return;
 		}
 
 		for (int i = 0; i < N; i++) {
 			if ((v & (1 << i)) == 0) {
 				s[k] = i;
-				permutation(k + 1, v |= 1 << i);
+				combination(k + 1, v |= 1 << i);
 			}
 		}
+	}
+
+	private static int getDiff() {
+		int s1 = 0, s2 = 0;
+		for (int val : s) s1 += num[val];
+		for (int val : r) s2 += num[val];
+		return Math.abs(s1 - s2);
 	}
 
 	private static void makeR() {
