@@ -47,7 +47,7 @@ public class Main {
 		for (int k = 0; k < N; k++) {
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < N; j++) {
-					if(graph[i][k] + graph[k][j] == 2) {
+					if (graph[i][k] + graph[k][j] == 2) {
 						graph[i][j] = 1;
 					}
 				}
