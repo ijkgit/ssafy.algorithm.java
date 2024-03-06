@@ -1,5 +1,3 @@
-package a2;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -7,7 +5,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
-public class Solution {
+public class ë¬¸ì œ1ë²ˆ {
 	private static int T;
 	private static int N;
 	private static int M;
@@ -43,7 +41,7 @@ public class Solution {
 			
 			
 			ans = Integer.MAX_VALUE;
-			// ÇØ´ç depth ·Î ¸ø°¡¸é depth ¸¦ Áõ°¡½ÃÄÑº¸ÀÚ
+			// ï¿½Ø´ï¿½ depth ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ depth ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñºï¿½ï¿½ï¿½
 			for (int d = 1; d < 50; d++) {
 				v = new boolean[N][M];
 				dfs(N - 1, 0, d);
@@ -58,33 +56,33 @@ public class Solution {
 	}
 
 	private static void dfs(int x, int y, int depth) {
-		// ¸ñÀûÁö µµ´Þ ½Ã ³¡
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
 		if (x == targetX && y == targetY) {
 			ans = Math.min(ans, depth);
 			return;
 		}
 
-		// °¡ÁöÄ¡±â 1
+		// ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ 1
 		if (depth >= ans)
 			return;
 
-		// ÇØ´ç ·¹º§ ¹üÀ§ ³»·Î ÀÌµ¿ °¡´É?
+		// ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½?
 		v[x][y] = true;
 		for (int i = 1; i <= depth; i++) {
 			if (x - i >= 0 && map[x - i][y] != 0 && !v[x - i][y]) {
-				// °¡´ÉÇÏ¸é À§·Î °¡ÀÚ!
+				// ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!
 				dfs(x - i, y, depth);
-			} else { // ºÒ°¡´ÉÇÏ¸é ÇÑÄ­ ¿À¸¥ÂÊÀ¸·Î °¡º¸ÀÚ!
+			} else { // ï¿½Ò°ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½Ä­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!
 				if (y < M - 1 && map[x][y + 1] != 0 && !v[x][y + 1]) {
 					dfs(x, y + 1, depth);
 				}
 
-				// ¿ÞÂÊµµ °¡º¸ÀÚ!
+				// ï¿½ï¿½ï¿½Êµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!
 				else if (y > 0 && map[x][y - 1] != 0 && !v[x][y - 1]) {
 					dfs(x, y - 1, depth);
 				}
 			}
-			// ¾Æ·¡µµ °¡º¸ÀÚ..
+			// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			if (x + i < N && map[x+i][y] != 0 && !v[x+i][y]) {
 				dfs(x + i, y, depth);
 			}

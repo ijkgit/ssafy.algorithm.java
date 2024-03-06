@@ -1,12 +1,10 @@
-package a;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.StringTokenizer;
 
-public class Solution {
+public class ë¬¸ì œ2ë²ˆ {
 	private static int T;
 	private static int N;
 	private static int SIZE = 15;
@@ -50,14 +48,14 @@ public class Solution {
 			
 			Collections.sort(houseList);
 			
-			// ÁÖÀ¯¼Ò ÇÑ°³¸¸ ¼¼¿î´Ù.
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 			for (int x = -SIZE; x <= SIZE; x++) {
 				for (int y = -SIZE; y <= SIZE; y++) {
 					int sum = 0, cnt = 0;
 					L:for (House h : houseList) {
-						if (h.x == x && h.y == y) break L; // Áý¿¡´Â ¸ø¼¼¿ö¿ä
+						if (h.x == x && h.y == y) break L; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						int diff = Math.abs(x - h.x) + Math.abs(y - h.y);
-						if (h.d < diff) break L; // ³Ê Å»¶ô
+						if (h.d < diff) break L; // ï¿½ï¿½ Å»ï¿½ï¿½
 						else {
 //							System.out.println(x + " " + y);
 							sum += diff;
@@ -70,45 +68,45 @@ public class Solution {
 				}
 			}
 			
-			// ÁÖÀ¯¼Ò µÎ°³ ¼¼¿î´Ù.
-			// ÇÏ³ª °¡´ÉÇÏ¸é ÇÏ³ª¸¸ ¼¼¿ì´Ï±î.. skip
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
+			// ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½.. skip
 			if (ans == Integer.MAX_VALUE) {
-				// Ã¹¹øÂ° ÁÖÀ¯¼ÒÀÔ´Ï´ç.
+				// Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 				for (int x = -SIZE; x <= SIZE; x++) {
 					for (int y = -SIZE; y <= SIZE; y++) {
 						
-						// µÎ¹øÂ° ÁÖÀ¯¼Ò
+						// ï¿½Î¹ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						for (int x2 = -SIZE; x2 <= SIZE; x2++) {
 							for (int y2 = -SIZE; y2 <= SIZE; y2++) {
 								
-								if (x == x2 && y == y2) continue; // Áßº¹ Ã³¸®
+								if (x == x2 && y == y2) continue; // ï¿½ßºï¿½ Ã³ï¿½ï¿½
 								
 								int sum = 0, cnt = 0;
 								L:for (House h : houseList) {
 									int diff = Math.abs(x - h.x) + Math.abs(y - h.y);
 									int diff2 = Math.abs(x2 - h.x) + Math.abs(y2 - h.y);
 									
-									if (h.d < diff && h.d < diff2) break L; // ³Ê Å»¶ô
+									if (h.d < diff && h.d < diff2) break L; // ï¿½ï¿½ Å»ï¿½ï¿½
 									
-									if (h.d >= diff && h.d >= diff2) { // ÁýÀÌ ÁÖÀ¯¼Ò¸¦ µÎ°³³ª °¡Áö³×¿ä
-										if (h.x == x && h.y == y) { // ¾Ë°íº¸´Ï ³»ÁýÀÌ ÁÖÀ¯¼Ò¿´¾î¿ä
+									if (h.d >= diff && h.d >= diff2) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¸ï¿½ ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½×¿ï¿½
+										if (h.x == x && h.y == y) { // ï¿½Ë°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½ï¿½
 											sum += diff2;
 											cnt++;
-										} else if (h.x == x2 && h.y == y2) { // ¾Ë°íº¸´Ï ³»ÁýÀÌ ÁÖÀ¯¼Ò¿´¾î¿ä
+										} else if (h.x == x2 && h.y == y2) { // ï¿½Ë°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½ï¿½
 											sum += diff;
 											cnt++;
-										} else { // µÑ Áß¿¡ °¡±î¿î ÁÖÀ¯¼Ò¸¦ ±¸ÇØ¿ä
+										} else { // ï¿½ï¿½ ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½Ø¿ï¿½
 											sum += Math.min(diff, diff2);
 											cnt++;
 										}
 									}
 									else if (h.d >= diff) {
-										if (!(h.x == x && h.y == y)) { // Áý¿¡´Â ¸ø¼¼¿ö¿ä
+										if (!(h.x == x && h.y == y)) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 											sum += diff;
 											cnt++;
 										}
 									} else if (h.d >= diff2) {
-										if (!(h.x == x2 && h.y == y2)) { // Áý¿¡´Â ¸ø¼¼¿ö¿ä
+										if (!(h.x == x2 && h.y == y2)) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 											sum += diff2;
 											cnt++;	
 										}
