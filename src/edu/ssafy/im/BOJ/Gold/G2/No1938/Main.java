@@ -62,7 +62,7 @@ public class Main {
 				int ny = p.y + d[1];
 				
 				if (nx < 1 || ny < 1 || nx >= N-1 || ny >= N-1) continue;
-				
+				if (v[nx])
 				v[nx][ny] = true;
 				q.offer(new Point(nx, ny, p.c+1, p.d));
 			}
