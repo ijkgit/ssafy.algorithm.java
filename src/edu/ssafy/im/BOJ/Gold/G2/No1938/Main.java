@@ -5,6 +5,9 @@ import java.util.ArrayDeque;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+/*
+map N * N 에 대해, 가로인 상태에서 방문했는지, 세로인 상태에서 방문했는지 -> 3차원 배열 사용
+ */
 public class Main {
 	private static int N;
 	private static int[][] map;
@@ -26,6 +29,8 @@ public class Main {
 			String row = br.readLine();
 			for (int j = 0; j < N; j++) {
 				map[i][j] = row.charAt(j);
+				// B의 중심을 찾기
+				// d : 가로 0 세로 1
 				if (map[i][j] == 'B') {
 					cnt++;
 					if (cnt != 2) continue;
@@ -78,6 +83,7 @@ public class Main {
 		return 0;
 	}
 
+	// 목적지를 검증하는 함수
 	private static boolean checkDestination(int x, int y, int d) {
 		if (d == 1) {
 			for (int nx = x - 1; nx <= x + 1; nx++) {
@@ -93,6 +99,7 @@ public class Main {
 		return true;
 	}
 
+	// 이동 가능한지 확인하는 함수
 	private static boolean checkMove(int x, int y, int d) {
 		if (v[x][y][d]) return false;
 		if (d == 1) {
@@ -109,6 +116,7 @@ public class Main {
 		return true;
 	}
 
+	// 회전이 가능한지 확인하는 함수
 	private static boolean checkRotate(int x, int y, int d) {
 		if (v[x][y][d]) return false;
 		for (int nx = x - 1; nx <= x + 1; nx++) {
