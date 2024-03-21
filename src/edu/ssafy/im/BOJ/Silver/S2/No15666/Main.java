@@ -1,12 +1,16 @@
 package edu.ssafy.im.BOJ.Silver.S2.No15666;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.StringTokenizer;
 
 public class Main {
     private static int N, M;
     private static int[] sel, A;
+    private static boolean[] v;
     private static StringBuilder sb = new StringBuilder();
+    private static HashSet<StringBuilder> ans = new HashSet<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,20 +25,33 @@ public class Main {
         for (int i = 0; i < N; i++) {
             A[i] = Integer.parseInt(st.nextToken());
         }
+        Arrays.sort(A);
 
         sel = new int[M];
-        combination(0, 0);
+        v = new boolean[10001];
+        combination(0);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
-    private static void combination(int k, int v) {
+    private static void combination(int k) {
         if (k == M) {
-            for (int s : sel) sb.append(s).append(" ");
-            sb.append("\n");
+//            for (int s : sel) sb.append(s).append(" ");
+//            sb.append("\n");
+            for (int s : sel) System.out.print(s + " ");
+            System.out.println();
             return;
         }
 
         for (int i = 0; i < N; i++) {
-            `sel[k] = A[i];
+            if(!v[A[i]]) {
+                sel[k] = A[i];
+                combination(k + 1);
+                v[A[i]] = true;
+                combination(k);
+                v[A[i]] = false;
+            }
         }
     }
 }
