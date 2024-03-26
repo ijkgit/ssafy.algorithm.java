@@ -31,6 +31,7 @@ public class Main {
 
             if (stack.size() < b.length) continue;
 
+            // 폭발 문자열의 길이만큼 스택에 쌓였을 경우 비교 시작
             boolean flag = true;
             for (int j = 0; j < b.length; j++) {
                 if (stack.get(stack.size() - b.length + j) != b[j]) {
@@ -39,6 +40,7 @@ public class Main {
                 }
             }
 
+            // 폭발 문자열일 경우 폭발
             if (flag) for (char t : b) stack.pop();
         }
 

@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ace5ac3-e1fc-40de-b240-4188b1e3a832" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/edu/ssafy/im/BOJ/Gold/G4/No9935/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/edu/ssafy/im/BOJ/Gold/G4/No9935/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +73,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711413813232</updated>
-      <workItem from="1711413814257" duration="3603000" />
+      <workItem from="1711413814257" duration="3835000" />
     </task>
     <servers />
   </component>
