@@ -2,12 +2,12 @@ package edu.ssafy.im.BOJ.Gold.G4.No9935;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Stack;
 
 public class Main {
     private static char[] s;
     private static char[] b;
-    private static int start;
-    private static int end;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -17,53 +17,33 @@ public class Main {
         s = br.readLine().toCharArray();
         b = br.readLine().toCharArray();
 
-        int flag = -1;
-        while(flag != start) {
-            end = 0;
-            flag = start;
-            while(setStart()) {
-                check();
-            }
-        }
-
-        for (int i = 0; i < s.length; i++) {
-            if (s[i] != '*') sb.append(s[i]);
-        }
-
-        if (sb.length() == 0) sb.append("FRULA");
-
+        sb.append(sol());
         bw.write(sb.toString());
         bw.flush();
         bw.close();
     }
 
-    public static boolean setStart() {
-        for (int i = end; i < s.length; i++) {
-            if (s[i] == b[0]) {
-                start = i;
-                return true;
-            }
-        }
-        return false;
-    }
+    private static String sol() {
+        Stack<Character> stack = new Stack<>();
 
-    public static void check() {
-        end = start + b.length;
+        for (char c : s) {
+            stack.push(c);
 
-        for (int i = start, j = 0; i < end; i++, j++) {
-            if (i >= s.length) return;
+            if (stack.size() < b.length) continue;
 
-            if (s[i] == '*') {
-                end++;
-                j--;
+            boolean flag = true;
+            for (int j = 0; j < b.length; j++) {
+                if (stack.get(stack.size() - b.length + j) != b[j]) {
+                    flag = false;
+                    break;
+                }
             }
-            else if (s[i] != b[j]) {
-                end = i;
-                return;
-            }
+
+            if (flag) for (char t : b) stack.pop();
         }
-        for (int i = start; i < end; i++) {
-            s[i] = '*';
-        }
+
+        StringBuilder sb = new StringBuilder();
+        for(char c : stack) sb.append(c);
+        return stack.isEmpty() ? "FRULA" : sb.toString();
     }
 }
