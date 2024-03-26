@@ -1,88 +1,95 @@
 package edu.ssafy.im.BOJ.Gold.G4.No19942;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
-    private static int N, mp, mf, ms, mv, ans = Integer.MAX_VALUE;
-    private static int[] p, f, s, v, c;
-    private static boolean[] ansString;
+    private static int N;
+    private static Food LIMIT;
+    private static Food[] foods;
+    private static int minCost;
+    private static String ans;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
-        StringTokenizer st;
 
         N = Integer.parseInt(br.readLine());
 
-        st = new StringTokenizer(br.readLine());
-        mp = Integer.parseInt(st.nextToken());
-        mf = Integer.parseInt(st.nextToken());
-        ms = Integer.parseInt(st.nextToken());
-        mv = Integer.parseInt(st.nextToken());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        LIMIT = new Food(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
 
-        p = new int[N];
-        f = new int[N];
-        s = new int[N];
-        v = new int[N];
-        c = new int[N];
+        foods = new Food[N];
+        minCost = Integer.MAX_VALUE;
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            p[i] = Integer.parseInt(st.nextToken());
-            f[i] = Integer.parseInt(st.nextToken());
-            s[i] = Integer.parseInt(st.nextToken());
-            v[i] = Integer.parseInt(st.nextToken());
-            c[i] = Integer.parseInt(st.nextToken());
+            foods[i] = new Food(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
         }
 
-        boolean[] visited = new boolean[N];
-        ansString = new boolean[N];
-//        Arrays.fill(ansString, true);
-        powerSet(0, 0, 0, 0, 0, 0, visited);
+        recursive(0, new Food(0, 0, 0, 0, 0), new StringBuilder());
 
-        ans = ans == Integer.MAX_VALUE ? -1 : ans;
+        if (minCost == Integer.MAX_VALUE) sb.append(-1);
+        else sb.append(minCost).append("\n").append(ans);
 
-        sb.append(ans);
-        sb.append("\n");
-
-//        System.out.println(Arrays.toString(ansString));
-        if (ans != -1)
-            for (int i = 0; i < ansString.length; i++) {
-                if (ansString[i]) sb.append(i + 1).append(" ");
-            }
         bw.write(sb.toString());
         bw.flush();
         bw.close();
     }
 
-    private static void powerSet(int k, int sp, int sf, int ss, int sv, int sc, boolean[] visited) {
-        if (sc >= ans) return;
-
-        if (k == N) {
-            if (sp < mp || sf < mf || ss < ms || sv < mv) return;
-//            System.out.println(Arrays.toString(visited));
-//            System.out.println(Arrays.toString(ansString));
-
-            System.out.println(Arrays.toString(visited));
-            System.out.println(Arrays.toString(ansString));
-
-//            if (ans >= sc) {
-                ansString = visited.clone();
-//            }
-            ans = Math.min(ans, sc);
-
-
-            return;
+    private static void recursive(int i, Food sum, StringBuilder sb) {
+        if (sum.check() && sum.c < minCost) {
+            ans = sb.toString();
+            minCost = sum.c;
         }
 
-        visited[k] = true;
-        powerSet(k + 1, sp + p[k], sf + f[k], ss + s[k], sv + v[k], sc + c[k], visited);
+        if (i == N) return;
 
-        visited[k] = false;
-        powerSet(k + 1, sp, sf, ss, sv, sc, visited);
+        sum.add(foods[i]);
+        sb.append(i+1).append(" ");
+        recursive(i+1, sum, sb);
 
+        sum.remove(foods[i]);
+        sb.delete(sb.length()-2, sb.length());
+        recursive(i+1, sum, sb);
+    }
 
+    static class Food {
+        int p, f, s, v, c;
+
+        public Food(int p, int f, int s, int v, int c) {
+            this.p = p;
+            this.f = f;
+            this.s = s;
+            this.v = v;
+            this.c = c;
+        }
+
+        public Food(int p, int f, int s, int v) {
+            this.p = p;
+            this.f = f;
+            this.s = s;
+            this.v = v;
+        }
+
+        public void add(Food f) {
+            this.p += f.p;
+            this.f += f.f;
+            this.s += f.s;
+            this.v += f.v;
+            this.c += f.c;
+        }
+
+        public void remove(Food f) {
+            this.p -= f.p;
+            this.f -= f.f;
+            this.s -= f.s;
+            this.v -= f.v;
+            this.c -= f.c;
+        }
+
+        public boolean check() {
+            return this.p >= LIMIT.p && this.f >= LIMIT.f && this.s >= LIMIT.s && this.v >= LIMIT.v;
+        }
     }
 }
