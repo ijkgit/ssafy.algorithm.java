@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ace5ac3-e1fc-40de-b240-4188b1e3a832" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/edu/ssafy/im/BOJ/Silver/S3/No2579/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/edu/ssafy/im/BOJ/Gold/G4/No4485/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/edu/ssafy/im/BOJ/Gold/G4/No4485/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +53,20 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.edu.ssafy.im.BOJ.Silver.S2.No11722.Main">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ssafy.im.BOJ.Silver.S3.No2579.Main" />
+      <module name="Algorithm_local" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ssafy.im.BOJ.Silver.S3.No2579.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="edu.ssafy.im.BOJ.Gold.G3.No1520.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.ssafy.im.BOJ.Gold.G3.No1520.Main" />
       <module name="Algorithm_local" />
@@ -91,19 +106,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="edu.ssafy.im.BOJ.Gold.G4.No19942.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.ssafy.im.BOJ.Gold.G4.No19942.Main" />
-      <module name="Algorithm_local" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.ssafy.im.BOJ.Gold.G4.No19942.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="edu.ssafy.im.BOJ.Silver.S2.No11722.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.ssafy.im.BOJ.Silver.S2.No11722.Main" />
       <module name="Algorithm_local" />
@@ -119,11 +121,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.edu.ssafy.im.BOJ.Silver.S2.No11722.Main" />
         <item itemvalue="Application.edu.ssafy.im.BOJ.Gold.G3.No1520.Main" />
         <item itemvalue="Application.edu.ssafy.im.BOJ.Gold.G4.No19942.Main (2)" />
         <item itemvalue="Application.edu.ssafy.im.BOJ.Gold.G4.No19942.Main (1)" />
-        <item itemvalue="Application.edu.ssafy.im.BOJ.Gold.G4.No19942.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -143,7 +145,7 @@
       <option name="presentableId" value="Default" />
       <updated>1711413813232</updated>
       <workItem from="1711413814257" duration="11093000" />
-      <workItem from="1711496595661" duration="17792000" />
+      <workItem from="1711496595661" duration="21756000" />
     </task>
     <servers />
   </component>
