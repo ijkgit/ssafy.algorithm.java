@@ -44,7 +44,7 @@ public class Main {
         while(!pq.isEmpty()) {
             Point p = pq.poll();
 
-            // 목적지 도달 시 금액 반환
+            // 목적지 도달 시 금액 반환 
             if (p.x == N-1 && p.y == N-1) return p.w;
 
             for (int[] d: direction) {
