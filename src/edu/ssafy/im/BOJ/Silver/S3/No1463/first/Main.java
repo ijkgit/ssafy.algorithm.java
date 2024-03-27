@@ -1,4 +1,4 @@
-package edu.ssafy.im.BOJ.Silver.S3.No1463;
+package edu.ssafy.im.BOJ.Silver.S3.No1463.first;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
