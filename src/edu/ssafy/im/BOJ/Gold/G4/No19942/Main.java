@@ -7,7 +7,7 @@ public class Main {
     private static int N;
     private static Food LIMIT;
     private static Food[] foods;
-    private static int minCost;
+    private static int minCost = Integer.MAX_VALUE;
     private static String ans;
 
     public static void main(String[] args) throws IOException {
@@ -21,7 +21,6 @@ public class Main {
         LIMIT = new Food(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
 
         foods = new Food[N];
-        minCost = Integer.MAX_VALUE;
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             foods[i] = new Food(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
@@ -46,12 +45,10 @@ public class Main {
         if (i == N) return;
 
         sum.add(foods[i]);
-        sb.append(i+1).append(" ");
-        recursive(i+1, sum, sb);
+        recursive(i+1, sum, sb.append(i+1).append(" "));
 
         sum.remove(foods[i]);
-        sb.delete(sb.length()-2, sb.length());
-        recursive(i+1, sum, sb);
+        recursive(i+1, sum, sb.delete(sb.length() - ((i+1) < 10 ? 2 : 3), sb.length()));
     }
 
     static class Food {
