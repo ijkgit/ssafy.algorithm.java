@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ace5ac3-e1fc-40de-b240-4188b1e3a832" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/edu/ssafy/im/BOJ/Silver/S3/No11726/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/edu/ssafy/im/SWEA/D4/No9282/Solution.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algorithm_local.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithm_local.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +34,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "Application.Solution.executor": "Run",
     "Application.edu.ssafy.im.BOJ.Gold.G3.No1520.Main.executor": "Run",
     "Application.edu.ssafy.im.BOJ.Gold.G4.No19942.Main (1).executor": "Run",
     "Application.edu.ssafy.im.BOJ.Gold.G4.No19942.Main (2).executor": "Run",
@@ -56,7 +56,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.edu.ssafy.im.BOJ.Silver.S3.No11726.Main">
+  <component name="RunManager" selected="Application.Solution">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.ssafy.im.BOJ.Silver.S3.No2579.Main" />
       <module name="Algorithm_local" />
@@ -70,12 +70,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="edu.ssafy.im.BOJ.Gold.G3.No1520.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.ssafy.im.BOJ.Gold.G3.No1520.Main" />
+    <configuration name="Solution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ssafy.im.SWEA.D4.No9282.Solution" />
       <module name="Algorithm_local" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.ssafy.im.BOJ.Gold.G3.No1520.*" />
+          <option name="PATTERN" value="edu.ssafy.im.SWEA.D4.No9282.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -124,11 +124,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Solution" />
         <item itemvalue="Application.edu.ssafy.im.BOJ.Silver.S3.No11726.Main" />
         <item itemvalue="Application.edu.ssafy.im.BOJ.Silver.S3.No9095.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.edu.ssafy.im.BOJ.Silver.S2.No11722.Main" />
-        <item itemvalue="Application.edu.ssafy.im.BOJ.Gold.G3.No1520.Main" />
       </list>
     </recent_temporary>
   </component>
