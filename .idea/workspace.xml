@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ace5ac3-e1fc-40de-b240-4188b1e3a832" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/edu/ssafy/im/BOJ/Gold/G5/No9205/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/edu/ssafy/im/BOJ/Platinum/No1786/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +40,7 @@
     "Application.edu.ssafy.im.BOJ.Gold.G4.No19942.Main (2).executor": "Run",
     "Application.edu.ssafy.im.BOJ.Gold.G4.No19942.Main.executor": "Run",
     "Application.edu.ssafy.im.BOJ.Gold.G5.No9205.Main.executor": "Run",
+    "Application.edu.ssafy.im.BOJ.Platinum.No1786.Main.executor": "Run",
     "Application.edu.ssafy.im.BOJ.Silver.S2.No11722.Main.executor": "Run",
     "Application.edu.ssafy.im.BOJ.Silver.S3.No11726.Main.executor": "Run",
     "Application.edu.ssafy.im.BOJ.Silver.S3.No9095.Main.executor": "Run",
@@ -58,7 +59,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.edu.ssafy.im.BOJ.Gold.G5.No9205.Main">
+  <component name="RunManager" selected="Application.edu.ssafy.im.BOJ.Platinum.No1786.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.ssafy.im.BOJ.Gold.G5.No9205.Main" />
       <module name="Algorithm_local" />
@@ -98,12 +99,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="edu.ssafy.im.BOJ.Silver.S3.No11726.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.ssafy.im.BOJ.Silver.S3.No11726.Main" />
+    <configuration name="edu.ssafy.im.BOJ.Platinum.No1786.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ssafy.im.BOJ.Platinum.No1786.Main" />
       <module name="Algorithm_local" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.ssafy.im.BOJ.Silver.S3.No11726.*" />
+          <option name="PATTERN" value="edu.ssafy.im.BOJ.Platinum.No1786.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -126,11 +127,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.edu.ssafy.im.BOJ.Platinum.No1786.Main" />
         <item itemvalue="Application.edu.ssafy.im.BOJ.Gold.G5.No9205.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.edu.ssafy.im.SWEA.D6.Solution" />
         <item itemvalue="Application.Solution" />
-        <item itemvalue="Application.edu.ssafy.im.BOJ.Silver.S3.No11726.Main" />
       </list>
     </recent_temporary>
   </component>
