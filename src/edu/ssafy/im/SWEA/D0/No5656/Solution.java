@@ -56,7 +56,9 @@ public class Solution {
 
         for (int i = 0; i < W; i++) {
             sel[k] = i;
+            if (ans == 0) return;
             permutation(k + 1);
+            if (ans == 0) return;
         }
     }
 
@@ -96,6 +98,7 @@ public class Solution {
             }
             for (int c = cur; c >= 0; c--) {
                 map[c][y] = 0;
+
             }
         }
     }
@@ -118,6 +121,9 @@ public class Solution {
                     if (map[nx][ny] == 0 || v[nx][ny]) continue;
 
                     v[nx][ny] = true;
+
+                    if (map[nx][ny] == 1) continue;
+
                     q.offer(new Point(nx, ny));
                 }
             }
