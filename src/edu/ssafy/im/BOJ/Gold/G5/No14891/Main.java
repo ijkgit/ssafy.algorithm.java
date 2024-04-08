@@ -48,15 +48,14 @@ public class Main {
             } else if (c.n == 2) {
                 if (gear[1][2] != gear[2][6]) moves[1] = c.d == 1 ? -1 : 1;
                 if (gear[2][2] != gear[3][6]) moves[3] = c.d == 1 ? -1 : 1;
-                if (moves[0] != 0 && gear[0][2] != gear[1][6]) moves[0] = moves[1] == 1 ? -1 : 1;
+                if (moves[1] != 0 && gear[0][2] != gear[1][6]) moves[0] = moves[1] == 1 ? -1 : 1;
             } else {
                 if (gear[2][2] != gear[3][6]) moves[2] = c.d == 1 ? -1 : 1;
                 if (moves[2] != 0 && gear[1][2] != gear[2][6]) moves[1] = moves[2] == 1 ? -1 : 1;
                 if (moves[1] != 0 && gear[0][2] != gear[1][6]) moves[0] = moves[1] == 1 ? -1 : 1;
             }
+            rotate();
         }
-
-        rotate();
 
         int ans = 0;
         if (gear[0][0] == 1) ans += 1;
