@@ -25,10 +25,22 @@ public class Main {
                 map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        sol();
+        sb.append(sol());
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
-    private static void sol() {
+    private static int sol() {
+        int ans = 0;
+        while (makeUnion() != 0) {
+            move();
+            ans++;
+        }
+        return ans;
+    }
+
+    private static void initUnion() {
         union = new int[N][N];
         int num = 1;
         for (int i = 0; i < N; i++) {
@@ -36,12 +48,13 @@ public class Main {
                 union[i][j] = num++;
             }
         }
-
-        makeUnion();
-        print();
     }
 
-    private static void makeUnion() {
+    private static int makeUnion() {
+        int cnt = 0;
+
+        initUnion();
+
         for (int x = 0; x < N; x++) {
             for (int y = 0; y < N; y++) {
                 for (int[] d : direction) {
@@ -50,8 +63,18 @@ public class Main {
 
                     if (nx < 0 || ny < 0 || nx >= N || ny >= N) continue;
                     if (!check(map[x][y], map[nx][ny])) continue;
-                    union[nx][ny] = union[x][y];
+                    setUnion(union[nx][ny], union[x][y]);
+                    cnt++;
                 }
+            }
+        }
+        return cnt;
+    }
+
+    private static void setUnion(int u, int n) {
+        for (int x = 0; x < N; x++) {
+            for (int y = 0; y < N; y++) {
+                if (union[x][y] == u) union[x][y] = n;
             }
         }
     }
@@ -65,13 +88,14 @@ public class Main {
         }
     }
 
-    private static int bfs(int x, int y) {
+    private static void bfs(int x, int y) {
         ArrayDeque<int[]> queue = new ArrayDeque<>();
+        ArrayDeque<int[]> unions = new ArrayDeque<>();
         visited[x][y] = true;
         queue.offer(new int[]{x, y});
+        unions.offer(new int[]{x, y});
 
         int sum = map[x][y];
-        int cnt = 1;
         while (!queue.isEmpty()) {
             int[] cur = queue.poll();
             for (int[] d : direction) {
@@ -84,23 +108,14 @@ public class Main {
 
                 visited[nx][ny] = true;
                 sum += map[nx][ny];
-                cnt++;
+                queue.offer(new int[]{nx, ny});
+                unions.offer(new int[]{nx, ny});
             }
         }
-
-        return sum / cnt;
+        for (int[] u : unions) map[u[0]][u[1]] = sum / unions.size();
     }
 
     private static boolean check(int a, int b) {
         return L <= Math.abs(a - b) && Math.abs(a - b) <= R;
-    }
-
-    private static void print() {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                System.out.print(union[i][j] + " ");
-            }
-            System.out.println();
-        }
     }
 }
