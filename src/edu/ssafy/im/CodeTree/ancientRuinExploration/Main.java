@@ -61,7 +61,7 @@ public class Main {
                 for (int d = 0; d < 3; d++) {
                     rotate(x, y); // 회전
                     int value = explore(); // 모의 탐사
-                    // 회전 목표 설정
+                    // 우선순위에 따라 회전 목표 설정
                     if (max < value || (max == value && d < rd)) {
                         max = value; rx = x; ry = y; rd = d;
                     } else if (max == value && d == rd && y < ry) {
