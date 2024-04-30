@@ -34,6 +34,17 @@ public class Main {
         return search();
     }
 
+    /*
+    규칙 설명
+    0차 커브 : d = 2 (왼쪽)
+    1차 커브 : d = 3 (아래, 0차 커브.pop = 2 , 2를 왼쪽으로 회전 => 3 (아래))
+    2차 커브 : d = 0, d = 3 (오른쪽, 아래, 1차 커브의 방향 순서를 거꾸로 돌려서 +1 한 값이 n차 커브의 경로)
+    3차 커브 : d = 0, d = 1, d = 0, d = 3
+    왼쪽 회전 과정 => (기존 경로) 2 3 0 3 을 뒤집음 => 3 0 3 2 => 1을 더함 => (새로운 경로) 0 1 0 3
+    기존 경로는 새로운 경로를 포함해서 계속 쌓임 => 1, 2, 4, 8, .. 2 * n
+    여기서 stack 을 생각함
+     */
+
     private static void makePath() {
         for (DragonCurve dc : dragonCurves) {
             for (int g = 0; g < dc.g; g++) {
