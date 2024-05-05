@@ -63,9 +63,15 @@ public class Main {
                     int value = explore(); // 모의 탐사
                     // 우선순위에 따라 회전 목표 설정
                     if (max < value || (max == value && d < rd)) {
-                        max = value; rx = x; ry = y; rd = d;
+                        max = value;
+                        rx = x; // 0 0 : 3
+                        ry = y; // 1 0 : 3
+                        rd = d;
                     } else if (max == value && d == rd && y < ry) {
-                        max = value; rx = x; ry = y; rd = d;
+                        max = value;
+                        rx = x;
+                        ry = y;
+                        rd = d;
                     }
                 }
             }
@@ -155,7 +161,6 @@ public class Main {
         for (int x = 0; x < N; x++) {
             for (int y = 0; y < N; y++) {
                 if (!visited[x][y]) res += bfs(x, y);
-
             }
         }
         return res;

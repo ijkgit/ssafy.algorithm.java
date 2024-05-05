@@ -1,4 +1,5 @@
 package edu.ssafy.im.CodeTree.ancientRuinExploration.debug;
+
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -102,7 +103,7 @@ public class Main {
 
     /**
      * 최대 이익을 낼 수 있는 시작점을 찾는다.
-     * */
+     */
     private static Piece findStartPoint() {
         int maxScore = 0;
         Piece startP = new Piece(1, 1, 1);
@@ -145,7 +146,7 @@ public class Main {
 
     /**
      * start로 들어왔을 때 몇개의 조각을 터뜨릴 수 있는지 센다.
-     * */
+     */
     private static int dfs(int r, int c, int[][] maps, boolean[][] visited, int start) {
         int cnt = 1;
         for (int d = 0; d < 4; d++) {
@@ -166,7 +167,7 @@ public class Main {
     }
 
     /**
-     *  4방 탐색을 해서 start와 같은 조각 = 즉, 터뜨릴 조각을 찾는다.
+     * 4방 탐색을 해서 start와 같은 조각 = 즉, 터뜨릴 조각을 찾는다.
      */
     private static void dfs2(int r, int c, int[][] maps, int start, boolean[][] visited, ArrayDeque<Point> dq) {
         for (int d = 0; d < 4; d++) {
@@ -188,7 +189,7 @@ public class Main {
 
     /**
      * 시계 방향 회전
-     * */
+     */
     private static void rotateClock90(int[][] copy, int sx, int sy) {
         int tmp = copy[sy + 0][sx + 2];
         copy[sy + 0][sx + 2] = copy[sy + 0][sx + 0];
