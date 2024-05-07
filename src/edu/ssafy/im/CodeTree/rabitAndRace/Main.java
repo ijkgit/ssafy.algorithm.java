@@ -7,6 +7,8 @@ public class Main {
     private static int N, M, P;
     private static int[][] map;
     private static Queue<Rabbit> rabbits;
+    private static final int[][] direction = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+
     static class Rabbit implements Comparable<Rabbit> {
         int pid, d, n, r, c;
 
@@ -53,7 +55,14 @@ public class Main {
         int S = Integer.parseInt(st.nextToken());
 
         for (int k = 0; k < K; k++) {
-
+            Rabbit rabbit = rabbits.poll();
+            int score = 0, sr = 0, sc = 0;
+            int s;
+            for (int dir = 0; dir < direction.length; dir++) {
+                int s = dir == 0 || dir == 2 ? N : M;
+                if((rabbit.d / s) % 2 == 1) dir = (dir + 2) % 4;
+                
+            }
         }
     }
 
