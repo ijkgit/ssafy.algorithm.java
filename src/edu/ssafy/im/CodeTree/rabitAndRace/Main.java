@@ -10,14 +10,15 @@ public class Main {
     private static final int[][] direction = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
     static class Rabbit implements Comparable<Rabbit> {
-        int pid, d, n, r, c;
+        int pid, d, n, r, c, s;
 
-        public Rabbit(int pid, int d, int n, int r, int c) {
+        public Rabbit(int pid, int d, int n, int r, int c, int s) {
             this.pid = pid;
             this.d = d;
             this.n = n;
             this.r = r;
             this.c = c;
+            this.s = s;
         }
 
         @Override
@@ -46,7 +47,7 @@ public class Main {
         for (int p = 0; p < P; p++) {
             int pid = Integer.parseInt(st.nextToken());
             int d = Integer.parseInt(st.nextToken());
-            rabbits.offer(new Rabbit(pid, d, 0, 0, 0));
+            rabbits.offer(new Rabbit(pid, d, 0, 0, 0, 0));
         }
     }
 
@@ -56,13 +57,30 @@ public class Main {
 
         for (int k = 0; k < K; k++) {
             Rabbit rabbit = rabbits.poll();
-            int score = 0, sr = 0, sc = 0;
-            int s;
+
+            // 이동
+            int rs = 0, rr = 0, rc = 0;
             for (int dir = 0; dir < direction.length; dir++) {
                 int s = dir == 0 || dir == 2 ? N : M;
-                if((rabbit.d / s) % 2 == 1) dir = (dir + 2) % 4;
-                
+                int nd = 0;
+                if((rabbit.d / (s-1)) % 2 == 1) nd = (dir + 2) % 4;
+                int m = rabbit.d % (s-1);
+                int ns = 0, nr = rabbit.r, nc = rabbit.c;
+                if (s == N) nr += direction[nd][0] * m;
+                else nc += direction[nd][1] * m;
+                ns = nr + nc;
+                if (rs < ns || (rs == ns && rr < nr) || (rs == ns && rr == nr && rc < nc)) {
+                    rs = ns;
+                    rr = nr;
+                    rc = nc;
+                }
             }
+
+            // 점수 얻기
+            for (Rabbit r : rabbits) r.s += rs;
+
+            // 뛴 토끼 다시 넣기
+            rabbits.offer(new Rabbit(rabbit.pid, rabbit.d, rabbit.n + 1, rr, rc, rabbit.s));
         }
     }
 
